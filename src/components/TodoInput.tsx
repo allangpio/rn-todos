@@ -8,10 +8,11 @@ interface TodoInputProps {
 }
 
 export function TodoInput({ addTask }: TodoInputProps) {
-  // const [task, setTask] = useState('');
+  const [task, setTask] = useState('');
 
-  function handleAddNewTask() {
-    //TODO - Call addTask and clean input value 
+  function handleAddNewTask() {  
+      addTask(task)
+      setTask('')   
   }
 
   return (
@@ -21,11 +22,15 @@ export function TodoInput({ addTask }: TodoInputProps) {
         placeholder="Adicionar novo todo..."
         returnKeyType="send"
         //TODO - use value, onChangeText and onSubmitEditing props
+        value={task}
+        onSubmitEditing={handleAddNewTask}
+        onChangeText={setTask}
       />
       <TouchableOpacity
         testID="add-new-task-button"
         activeOpacity={0.7}
         style={styles.addButton}
+        onPress={handleAddNewTask}
         //TODO - onPress prop
       >
         <Image source={checkIcon} />
